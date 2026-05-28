@@ -1,13 +1,11 @@
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
         maven { url "https://repo.spring.io/snapshot" }
         maven { url "https://repo.spring.io/milestone" }
-        maven { url 'https://repo.spring.io/plugins-release' }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
-        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.7'
     }
     ext {
         snippetsDir = file('build/generated-snippets')
@@ -17,9 +15,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'idea'
-apply plugin: 'propdeps'
 apply plugin: 'spring-boot'
-apply plugin: 'propdeps-idea'
 
 sourceCompatibility = 1.8
 
@@ -31,13 +27,12 @@ war {
 
 
 repositories {
-    jcenter()
+    mavenCentral()
     maven { url "https://repo.spring.io/snapshot" }
     maven { url "https://repo.spring.io/milestone" }
     maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
-    maven { url "https://vaadin.com/nexus/content/repositories/vaadin-addons/" }
+    maven { url "https://maven.vaadin.com/vaadin-addons/" }
     maven { url "https://oss.sonatype.org/content/repositories/vaadin-snapshots/" }
-    mavenCentral()
 }
 
 dependencyManagement {
@@ -75,7 +70,7 @@ dependencies {
 
     compile("org.springframework.boot:spring-boot-devtools")
 
-    optional "org.springframework.boot:spring-boot-configuration-processor"
+    compileOnly "org.springframework.boot:spring-boot-configuration-processor"
 
     compile("org.vaadin:viritin:1.58")
     compile("org.vaadin.teemu:switch:2.0.3")
